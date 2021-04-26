@@ -1,13 +1,14 @@
 {
   "name": "va-ui-elementui",
-  "version": "0.0.27",
+  "version": "0.0.1",
   "main": "lib/index.js",
   "author": "Runki",
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --config webpack.demo.js ",
     "build:dev": "webpack --mode development",
-    "build:pro": "webpack --mode production"
+    "build:pro": "webpack --mode production",
+    "build:example": "webpack --config example.config.js --mode production"
   },
   "dependencies": {
     "element-ui": "^2.15.1",
