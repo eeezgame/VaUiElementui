@@ -8,7 +8,7 @@ function resolve(dir) {
 const config = {
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'example/lib'),
+        path: path.resolve(__dirname, 'example/dist'),
         publicPath: '/',
         filename: 'index.js',
         libraryTarget: 'umd',
