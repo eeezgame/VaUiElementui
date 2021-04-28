@@ -4,11 +4,16 @@
  */
 let menus = [];
 
+const MyIcon = h =>{
+  return h('span','😸')
+}
+
 const dashboardMenu = {
   path: "/dashboard",
   name: "Dashboard",
-  meta: { title: "首页", icon: "el-icon-s-home" },
+  meta: { title: "首页", iconRender: MyIcon },
 };
+
 
 const permissionMenus = {
   path: "/permission",

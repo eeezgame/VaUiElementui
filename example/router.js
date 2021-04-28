@@ -16,17 +16,21 @@ const DirectivePermission = { template: '<div>DirectivePermission</div>' }
 const RolePermission = { template: '<div>RolePermission</div>' }
 /* Router Modules */
 
+
 const BasicLayout = {
     template: `
       <layout
+        ref="layout"  
         :menus="menus"
         :show-settings="true"
         :need-tags-view="false"
         :fixed-header="true"
         :sidebar="sidebar"
         device="desktop"
+        title="VA Layout"
         :handleCollapse="handleCollapse"
         :toggleSideBar="toggleSideBar"
+        :handleLogoClick="handleLogoClick"
         mode="mixLayout"
       >
         <template slot="rightMenuRender">
@@ -56,7 +60,17 @@ const BasicLayout = {
         },
         toggleSideBar(){
             this.sidebar.opened = !this.sidebar.opened
+        },
+        handleLogoClick() {
+            const $layout = this.$refs.layout;
+            if($layout && $layout.mode ==='mixLayout'){
+                const dashbordMenu = $layout.menus.find(menu=> menu.path === $layout.dashboardPath)
+                dashbordMenu && $layout.setCurrentTopMenu(dashbordMenu)
+            }
         }
+    },
+    mounted() {
+        window.$layout = this.$refs.layout;
     }
 }
 const nestedMenuRouter = {
