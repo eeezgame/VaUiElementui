@@ -11,13 +11,13 @@
       :menus="menus"
       :title="title"
       :logo="logo"
+      :handle-logo-click="handleLogoClick"
     />
     <div :class="{ hasTagsView: needTagsView }" class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
         <navbar
           :sidebar="sidebar"
           :device="device"
-          :avatar="avatar"
           :menus="menus"
           :toggleSideBar='toggleSideBar'
         >
@@ -71,7 +71,7 @@ const LayoutProps = Object.assign({}, NavBarProps, SidebarProps, {
     type:String,
     default: LAYOUT_MODE.sideMenuLayout
   },
-  dashboardPath:{
+  dashboardPath: {
     type: String,
     default: "/dashboard"
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-logo-container" :class="{ collapse: collapse }">
+  <div class="sidebar-logo-container" :class="{ collapse: collapse }" @click="handleLogoClick">
     <transition name="sidebarLogoFade">
       <router-link
         v-if="collapse"
@@ -21,6 +21,7 @@
 <script>
 export default {
   name: "SidebarLogo",
+  inject: ['layout'],
   props: {
     collapse: {
       type: Boolean,
@@ -28,14 +29,18 @@ export default {
     },
     title: {
       type: String,
-      default: "VA-Layout",
+      default: "",
     },
     logo: {
       type: String,
       default:
         "https://avatars.githubusercontent.com/u/63237008?v=4",
     },
-  },
+    handleLogoClick: {
+      type: Function,
+      default: ()=>{}
+    }
+  }
 };
 </script>
 

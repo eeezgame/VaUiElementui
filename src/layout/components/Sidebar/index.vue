@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'has-logo': showLogo }">
-    <logo v-if="showLogo" :logo='logo' :collapse="isCollapse" />
+    <logo v-if="showLogo" :handle-logo-click="handleLogoClick" :logo='logo' :title="title" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
@@ -54,11 +54,15 @@ export const SidebarProps =  {
   },
   title: {
     type: String,
-    default: "Layout"
+    default: ""
   },
   logo:{
     type: String,
     default: "https://avatars.githubusercontent.com/u/63237008?v=4"
+  },
+  handleLogoClick: {
+    type: Function,
+    default: ()=>{}
   }
 };
 
@@ -95,7 +99,7 @@ export default {
       } else if(_layoutMode === LAYOUT_MODE.sideMenuLayout){
         return this.menus;
       }
-      
+
       return this.menus;
     },
     showLogo() {
