@@ -7,20 +7,24 @@ export default {
       type: String,
       default: "",
     },
+    iconRender:{
+      type: Function,
+      default: null
+    },
     title: {
       type: String,
       default: "",
     },
   },
   render(h, context) {
-    const { icon, title } = context.props;
+    const { icon, iconRender, title } = context.props;
     const vnodes = [];
 
-    if (icon) {
+    if (iconRender && typeof iconRender === "function") {
+      vnodes.push(iconRender(h))
+    } else if (icon) {
       if (icon.includes("el-icon")) {
         vnodes.push(<i class={[icon, "sub-el-icon"]} />);
-      } else {
-        // vnodes.push(<svg class="svg-icon" aria-hidden="true"></svg>)
       }
     }
 

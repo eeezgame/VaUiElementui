@@ -14,6 +14,7 @@
         >
           <item
             :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
+            :icon-render="onlyOneChild.meta.iconRender || (item.meta && item.meta.iconRender)"
             :title="onlyOneChild.meta.title"
           />
         </el-menu-item>
@@ -30,6 +31,7 @@
         <item
           v-if="item.meta"
           :icon="item.meta && item.meta.icon"
+          :icon-render="onlyOneChild.meta.iconRender || (item.meta && item.meta.iconRender)"
           :title="item.meta.title"
         />
       </template>
