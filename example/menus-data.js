@@ -102,10 +102,82 @@ const nestedMenus = {
   ],
 };
 
+const nestedMenus2 = {
+  path: "/nested2",
+  meta: {
+    title: "嵌套菜单2",
+    icon: "el-icon-menu",
+  },
+  children: [
+    {
+      path: "menu1",
+      meta: {
+        title: "菜单 1",
+        icon: "el-icon-menu",
+      },
+      children: [
+        {
+          path: "menu1-1",
+          meta: {
+            title: "菜单 1-1",
+            icon: "el-icon-menu",
+          },
+        },
+        {
+          path: "menu1-2",
+          meta: {
+            title: "菜单 1-2",
+            icon: "el-icon-menu",
+          },
+          children: [
+            {
+              path: "menu1-2-1",
+              meta: {
+                title: "菜单 1-2-1",
+                icon: "el-icon-menu",
+              },
+            },
+            {
+              path: "menu1-2-2",
+              meta: {
+                title: "菜单 1-2-2",
+                icon: "el-icon-menu",
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      path: "menu2",
+      meta: {
+        title: "菜单 2",
+        icon: "el-icon-menu",
+      },
+    },
+  ],
+};
+
+function g(){
+  const size = 5;
+  const arr = [];
+  for(let count = 0; count < size; count++){
+    arr[count] = {
+      path:'/placeholder/page-' + count,
+      meta: {
+        title: "占位菜单" + count,
+        icon: "el-icon-menu",
+      }
+    }
+  }
+  return arr
+}
 menus = [
   dashboardMenu,
   permissionMenus,
   nestedMenus,
+  nestedMenus2,
+  ...g(),
   {
     path: "https://github.com/PanJiaChen/vue-element-admin",
     meta: { title: "外链", icon: "el-icon-link" },

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "element-ui": "^2.15.1",
+    "lodash.throttle": "^4.1.1",
     "path": "^0.12.7",
     "vue-router": "^3.5.1"
   },

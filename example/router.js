@@ -14,6 +14,8 @@ const Menu2 = { template: '<div>Menu2</div>' }
 const PagePermission = { template: '<div>PagePermission</div>' }
 const DirectivePermission = { template: '<div>DirectivePermission</div>' }
 const RolePermission = { template: '<div>RolePermission</div>' }
+const Page404 = { template: '<div>Page404</div>' }
+
 /* Router Modules */
 
 
@@ -76,7 +78,6 @@ const BasicLayout = {
 const nestedMenuRouter = {
     path: "/nested",
     component: BasicLayout,
-    redirect: "/nested/menu1/menu1-1",
     name: "Nested",
     meta: {
         title: "Nested Routes",
@@ -93,7 +94,6 @@ const nestedMenuRouter = {
             path: "/nested/menu1/menu1-2",
             component: Menu1_2,
             name: "Menu1-2",
-            redirect: "/nested/menu1/menu1-2/menu1-2-1",
             meta: { title: "Menu 1-2" },
         },
         {
@@ -123,7 +123,77 @@ const nestedMenuRouter = {
     ],
 };
 
+const nestedMenuRouter2 = {
+    path: "/nested2",
+    component: BasicLayout,
+    name: "Nested2",
+    meta: {
+        title: "Nested Routes",
+        icon: "nested",
+    },
+    children: [
+        {
+            path: "menu1/menu1-1",
+            component: Menu1_1,
+            name: "Nested2Menu1-1",
+            meta: { title: "Menu 1-1" },
+        },
+        {
+            path: "menu1/menu1-2",
+            component: Menu1_2,
+            name: "Nested2Menu1-2",
+            meta: { title: "Menu 1-2" },
+        },
+        {
+            path: "menu1/menu1-2/menu1-2-1",
+            component: Menu1_2_1,
+            name: "Nested2Menu1-2-1",
+            meta: { title: "Menu 1-2-1" },
+        },
+        {
+            path: "menu1/menu1-2/menu1-2-2",
+            component: Menu1_2_2,
+            name: "Nested2Menu1-2-2",
+            meta: { title: "Menu 1-2-2" },
+        },
+        {
+            path: "menu1/menu1-3",
+            component: Menu1_3,
+            name: "Nested2Menu1-3",
+            meta: { title: "Menu 1-3" },
+        },
+        {
+            path: "menu2",
+            name: "Nested2Menu2",
+            component: Menu2,
+            meta: { title: "Menu 2" },
+        },
+    ],
+};
 
+function g(){
+    const size = 20;
+    const placeholderRoute = {
+        path: "/placeholder",
+        component: BasicLayout,
+        name: "Placeholder",
+        meta: {
+            title: "占位布局",
+        },
+        children:[]
+    }
+    for(let count = 0; count < size; count++){
+        placeholderRoute.children[count] = {
+            path: "page-" + count,
+            component: count % 2 ? Foo : Bar,
+            name: "PlaceholderPage" + count,
+            meta: {
+                title: "占位" + count,
+            },
+        }
+    }
+    return placeholderRoute
+}
 /**
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
@@ -189,10 +259,29 @@ const asyncRoutes = [
         ],
     },
     nestedMenuRouter,
+    nestedMenuRouter2,
+    g(),
     { path: '/foo', component: Foo },
     { path: '/bar', component: Bar },
+    {
+        path: "/error",
+        component: BasicLayout,
+        name: "ErrorPages",
+        meta: {
+            title: "Error Pages",
+            icon: "404",
+        },
+        children: [
+            {
+                path: "404",
+                component: Page404,
+                name: "Page404",
+                meta: { title: "404", noCache: true }
+            }
+        ]
+    },
     // 404 page must be placed at the end !!!
-    { path: "*", redirect: "/404", hidden: true },
+    { path: "*", redirect: "/error/404", hidden: true }
 ];
 
 const router = new VueRouter({

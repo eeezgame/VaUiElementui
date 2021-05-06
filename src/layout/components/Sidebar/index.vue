@@ -91,7 +91,16 @@ export default {
             (item) => item.path === _currentTopMenu.path
           );
           if (activedSideMenu && activedSideMenu.children) {
-            return activedSideMenu.children;
+            const formattedSideMenu = activedSideMenu.children.map(child=>{
+              if(child.path[0] === '/'){
+                return child
+              } else {
+                return Object.assign({}, child, {
+                  path: activedSideMenu.path + '/' + child.path
+                });
+              }
+            });
+            return formattedSideMenu;
           } else {
             return [];
           }
