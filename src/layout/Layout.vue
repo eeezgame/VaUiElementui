@@ -1,7 +1,7 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div
-      v-if="device === 'mobile' && sidebar.opened"
+      v-if="isMobile && sidebar.opened"
       class="drawer-bg"
       @click="handleCollapse"
     />
@@ -45,7 +45,7 @@ import {
   Sidebar,
   SidebarProps,
 } from "./components";
-import { LAYOUT_MODE } from "@/types"
+import { LAYOUT_MODE, DEVICE_MODE } from "@/types"
 const LayoutProps = Object.assign({}, NavBarProps, SidebarProps, {
   showSettings: {
     type: Boolean,
@@ -69,7 +69,10 @@ const LayoutProps = Object.assign({}, NavBarProps, SidebarProps, {
   },
   mode:{
     type:String,
-    default: LAYOUT_MODE.sideMenuLayout
+    default: LAYOUT_MODE.sideMenuLayout,
+    validator: function (value) {
+      return [LAYOUT_MODE.leftLayout, LAYOUT_MODE.mixLayout, LAYOUT_MODE.sideMenuLayout, LAYOUT_MODE.topMenu].indexOf(value) !== -1
+    }
   },
   dashboardPath: {
     type: String,
@@ -100,9 +103,12 @@ export default {
         hideSidebar: !this.sidebar.opened,
         openSidebar: this.sidebar.opened,
         withoutAnimation: this.sidebar.withoutAnimation,
-        mobile: this.device === "mobile",
+        mobile: this.device === DEVICE_MODE.mobile
       };
     },
+    isMobile() {
+      return this.device === DEVICE_MODE.mobile
+    }
   },
   methods: {
     setCurrentTopMenu(topMenu){

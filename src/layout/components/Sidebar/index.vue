@@ -50,7 +50,10 @@ export const SidebarProps =  {
   },
   device: {
     type: String,
-    default: "desktop",
+    default: DEVICE_MODE.desktop,
+    validator: function (value) {
+      return [DEVICE_MODE.desktop, DEVICE_MODE.mobile].indexOf(value) !== -1
+    }
   },
   title: {
     type: String,

@@ -74,12 +74,13 @@ export default {
     },
     device: {
       type: String,
-      default: "desktop",
+      default: DEVICE_MODE.desktop,
+      validator: function (value) {
+        return [DEVICE_MODE.desktop, DEVICE_MODE.mobile].indexOf(value) !== -1
+      }
     },
   },
   data() {
-    // To fix https://github.com/PanJiaChen/vue-admin-template/issues/237
-    // TODO: refactor with render function
     this.onlyOneChild = null;
     return {};
   },

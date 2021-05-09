@@ -76,7 +76,6 @@ export default {
     this.menuItemSizes = [];
     this.overflowedItemsSizes = [];
 
-    // this.setWidthAndResize = throttle(this.setWidthAndResize, 1200);
     return {
       overflowed: false,
       overflowedItems: [],
@@ -107,7 +106,6 @@ export default {
     activeMenu: {
       handler: function (val) {
         if (val) {
-          // this.$store.commit("user/SET_CURRENT_TOPMENU", val);
           this.layout && this.layout.setCurrentTopMenu(val)
         }
       },

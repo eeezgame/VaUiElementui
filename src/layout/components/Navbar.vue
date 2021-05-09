@@ -22,6 +22,7 @@
 <script>
 import Hamburger from "@/components/Hamburger";
 import MenuHeader from "./MenuHeader";
+import { DEVICE_MODE } from "@/types"
 
 export const NavBarProps = {
   sidebar: {
@@ -35,7 +36,10 @@ export const NavBarProps = {
   },
   device: {
     type: String,
-    default: "desktop",
+    default: DEVICE_MODE.desktop,
+    validator: function (value) {
+      return [DEVICE_MODE.desktop, DEVICE_MODE.mobile].indexOf(value) !== -1
+    }
   },
   menus: {
     type: Array,
@@ -52,13 +56,7 @@ export default {
     Hamburger,
     MenuHeader,
   },
-  props: NavBarProps,
-  methods: {
-    async logout() {
-      await this.$store.dispatch("user/logout");
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`);
-    },
-  },
+  props: NavBarProps
 };
 </script>
 

@@ -4,3 +4,8 @@ export const LAYOUT_MODE = {
     mixLayout:"mixLayout",
     leftLayout:"leftLayout",
 }
+
+export const DEVICE_MODE = {
+    mobile: "mobile",
+    desktop: "desktop"
+}
