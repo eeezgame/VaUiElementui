@@ -83,10 +83,10 @@ export default {
     sideMenus() {
       const _currentTopMenu = this.layout && this.layout.currentTopMenu
       const _layoutMode = this.layout && this.layout.mode
-      if (_currentTopMenu && _layoutMode === LAYOUT_MODE.mixLayout) {
-        if (_currentTopMenu.path == this.layout.dashboardPath) {
+      if (_layoutMode === LAYOUT_MODE.mixLayout) {
+        if (_currentTopMenu && _currentTopMenu.path == this.layout.dashboardPath) {
           return [_currentTopMenu];
-        } else {
+        } else if(_currentTopMenu) {
           const activedSideMenu = this.menus.find(
             (item) => item.path === _currentTopMenu.path
           );
@@ -104,6 +104,8 @@ export default {
           } else {
             return [];
           }
+        } else {
+          return [];
         }
       } else if(_layoutMode === LAYOUT_MODE.sideMenuLayout){
         return this.menus;
