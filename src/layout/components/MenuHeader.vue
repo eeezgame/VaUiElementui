@@ -6,13 +6,31 @@
         class="top-menu-item hover-effect"
         @click="handleTopMenuClick(item)"
     >
-      <span
+      <a
           :class="activeMenu && activeMenu.path == item.path ? 'active' : ''"
-      >{{ item.meta.title }}</span
+      >{{ item.meta.title }}</a
       >
     </div>
-    <div ref="moreItem" class="more-item" v-show="topMenus && topMenus.length>0 && overflowed">
-      <i class="el-icon-more" style="color: #ffffff"></i>
+    <div ref="moreItem" class="more-item hover-effect" v-show="topMenus && topMenus.length>0 && overflowed">
+      <el-dropdown trigger="click">
+          <i class="el-icon-more" style="color: #ffffff"></i>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item
+              v-for="item in overflowedItems"
+              :key="item.path"
+              class="top-menu-item hover-effect"
+              @click.native="handleTopMenuClick(item)"
+          >
+            <span
+                :style="{
+                  color: activeMenu && activeMenu.path == item.path ? '#409eff' : ''
+                }"
+            >
+              {{ item.meta.title }}
+            </span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -260,7 +278,7 @@ export default {
         background: rgba(0, 0, 0, 0.925);
       }
     }
-    & span.active {
+    & a.active {
       color: #409eff;
     }
   }
@@ -272,6 +290,14 @@ export default {
     color: #ffffff;
     vertical-align: text-bottom;
     color: #ccc;
+
+    &.hover-effect {
+      cursor: pointer;
+      transition: background 0.3s;
+      &:hover {
+        background: rgba(0, 0, 0, 0.925);
+      }
+    }
   }
 }
 </style>
