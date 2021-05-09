@@ -2,7 +2,7 @@
 
 ### components
 
-- [x] Layout
+- [x] Layout ([Live Demo](https://eeezgame.github.io/VaUiElementui/layout-demo.html))
 - [ ] LoginPage
 - [ ] List
 
