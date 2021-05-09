@@ -1,6 +1,6 @@
 {
   "name": "va-ui-elementui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "author": "Runki",
   "license": "MIT",
@@ -13,6 +13,10 @@
     "build:dev": "webpack --mode development",
     "build:pro": "webpack --mode production",
     "build:example": "webpack --config example.config.js --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:eeezgame/VaUiElementui.git"
   },
   "dependencies": {
     "lodash.throttle": "^4.1.1",
@@ -42,6 +46,7 @@
     "webpack-node-externals": "^2.5.2"
   },
   "peerDependencies": {
-    "vue": "^2.6.12"
+    "vue": "^2.6.12",
+    "vue-router": "^3.5.1"
   }
 }
