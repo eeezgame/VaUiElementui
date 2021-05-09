@@ -27,7 +27,7 @@
 <script>
 import Logo from "./Logo";
 import SidebarItem from "./SidebarItem";
-import { LAYOUT_MODE } from "@/types"
+import { LAYOUT_MODE, DEVICE_MODE } from "@/types"
 const variables = {
   menuBg: '#304156',
   menuText: '#bfcbd9',

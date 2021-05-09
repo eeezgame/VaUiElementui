@@ -53,6 +53,7 @@ import { isExternal } from "@/utils/validate";
 import Item from "./Item";
 import AppLink from "./Link";
 import FixiOSBug from "./FixiOSBug";
+import { DEVICE_MODE } from "@/types"
 
 export default {
   name: "SidebarItem",

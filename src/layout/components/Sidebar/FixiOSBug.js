@@ -1,3 +1,5 @@
+import { DEVICE_MODE } from "@/types"
+
 export default {
   mounted() {
     // In order to fix the click on menu on the ios device will trigger the mouseleave bug
@@ -10,7 +12,7 @@ export default {
       if ($subMenu) {
         const handleMouseleave = $subMenu.handleMouseleave;
         $subMenu.handleMouseleave = (e) => {
-          if (this.device === "mobile") {
+          if (this.device === DEVICE_MODE.mobile) {
             return;
           }
           handleMouseleave(e);
