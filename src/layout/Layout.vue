@@ -12,6 +12,7 @@
       :title="title"
       :logo="logo"
       :handle-logo-click="handleLogoClick"
+      :menu-match-rule="menuMatchRule"
     />
     <div :class="{ hasTagsView: needTagsView }" class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">

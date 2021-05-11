@@ -66,6 +66,13 @@ export const SidebarProps =  {
   handleLogoClick: {
     type: Function,
     default: ()=>{}
+  },
+  menuMatchRule: {
+    type: String,
+    default: 'path',
+    validator: function (value) {
+      return ['path', 'fullPath'].indexOf(value) !== -1
+    }
   }
 };
 
@@ -76,10 +83,15 @@ export default {
   computed: {
     activeMenu() {
       const route = this.$route;
-      const { meta, path } = route;
+      const { meta, path, fullPath } = route;
       // if set path, the sidebar will highlight the path you set
       if (meta.activeMenu) {
         return meta.activeMenu;
+      }
+      if (this.menuMatchRule === 'path'){
+        return path
+      } else if (this.menuMatchRule === 'fullPath') {
+        return fullPath
       }
       return path;
     },
