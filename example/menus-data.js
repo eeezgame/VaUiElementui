@@ -23,7 +23,7 @@ const permissionMenus = {
   },
   children: [
     {
-      path: "/permission/page",
+      path: "/permission/page?p=1",
       meta: {
         title: "页面权限",
         icon: "el-icon-s-check"

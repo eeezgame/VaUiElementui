@@ -34,6 +34,7 @@ const BasicLayout = {
         :toggleSideBar="toggleSideBar"
         :handleLogoClick="handleLogoClick"
         mode="mixLayout"
+        menuMatchRule="fullPath"
       >
         <template slot="rightMenuRender">
             <div style="display: flex;align-items: center;height: 100%;">
