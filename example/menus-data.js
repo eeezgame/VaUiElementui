@@ -4,6 +4,17 @@
  */
 let menus = [];
 
+const createMenuData = (path,title,icon,iconRender)=>{
+  return {
+    path,
+    meta:{
+      title,
+      icon,
+      iconRender
+    }
+  }
+}
+
 const MyIcon = h =>{
   return h('span','😸')
 }
@@ -88,6 +99,27 @@ const nestedMenus = {
                 icon: "el-icon-menu",
               },
             },
+            createMenuData("/nested/menu1/menu1-2/menu1-2-3","菜单 1-2-3","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-4","菜单 1-2-4","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-5","菜单 1-2-5","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-6","菜单 1-2-6","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-7","菜单 1-2-7","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-8","菜单 1-2-8","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-9","菜单 1-2-9","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-10","菜单 1-2-10","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-11","菜单 1-2-11","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-12","菜单 1-2-12","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-13","菜单 1-2-13","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-14","菜单 1-2-14","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-15","菜单 1-2-15","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-16","菜单 1-2-16","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-17","菜单 1-2-17","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-18","菜单 1-2-18","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-19","菜单 1-2-19","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-20","菜单 1-2-20","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-21","菜单 1-2-21","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-22","菜单 1-2-22","el-icon-menu"),
+            createMenuData("/nested/menu1/menu1-2/menu1-2-23","菜单 1-2-23","el-icon-menu"),
           ],
         },
       ],
