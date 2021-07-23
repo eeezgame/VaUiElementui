@@ -200,11 +200,6 @@ export default {
     height: 100%;
   }
 
-  &.has-logo {
-    .el-scrollbar {
-      height: calc(100% - 50px);
-    }
-  }
 
   .is-horizontal {
     display: none;
@@ -324,6 +319,12 @@ export default {
       }
     }
   }
+}
+
+::v-deep .sidebar-container.has-logo {
+    .el-scrollbar {
+      height: calc(100% - 50px);
+    }
 }
 
 ::v-deep .el-menu--collapse .el-menu .el-submenu {
