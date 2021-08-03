@@ -12,6 +12,7 @@
         :collapse-transition="false"
         mode="vertical"
       >
+        <slot name="beforeSideBarItems"></slot>
         <sidebar-item
           v-for="route in sideMenus"
           :key="route.path"
@@ -19,6 +20,7 @@
           :base-path="route.path"
           :device='device'
         />
+        <slot name="afterSideBarItems"></slot>
       </el-menu>
     </el-scrollbar>
   </div>

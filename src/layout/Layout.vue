@@ -13,7 +13,16 @@
       :logo="logo"
       :handle-logo-click="handleLogoClick"
       :menu-match-rule="menuMatchRule"
-    />
+    >
+      <template slot="beforeSideBarItems">
+        <slot name="beforeSideBarItems">
+        </slot>
+      </template>
+      <template slot="afterSideBarItems">
+        <slot name="afterSideBarItems">
+        </slot>
+      </template>
+    </sidebar>
     <div :class="{ hasTagsView: needTagsView }" class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
         <navbar
