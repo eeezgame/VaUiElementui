@@ -16,6 +16,18 @@ const DirectivePermission = { template: '<div>DirectivePermission</div>' }
 const RolePermission = { template: '<div>RolePermission</div>' }
 const Page404 = { template: '<div>Page404</div>' }
 
+const Redirect = {
+    template: '<div></div>',
+    created() {
+        const { params, query } = this.$route;
+        const { path } = params;
+        this.$router.replace({ path: "/" + path, query });
+      },
+    render: function (h) {
+        return h(); // avoid warning message
+    },
+}
+
 /* Router Modules */
 
 
@@ -33,7 +45,8 @@ const BasicLayout = {
         :handleCollapse="handleCollapse"
         :toggleSideBar="toggleSideBar"
         :handleLogoClick="handleLogoClick"
-        mode="mixLayout"
+        :mode="mode"
+        dashboardPath="/dashboard"
         menuMatchRule="fullPath"
       >
         <template slot="rightMenuRender">
@@ -42,6 +55,49 @@ const BasicLayout = {
                     <img src="https://octodex.github.com/images/pusheencat.png" width="40" height="40"></img>   
                 </a>
             </div>
+        </template>
+
+        <template slot="afterSideBarItems" v-if="showShortcutMenus">
+            <el-menu-item-group>
+                <template slot="title">快捷菜单</template>
+                <router-link to="/redirect/permission/page?p=1">
+                    <el-menu-item index='1'>页面权限</el-menu-item>
+                </router-link>
+                <router-link to="/redirect/permission/directive">
+                    <el-menu-item index='2'>指令权限</el-menu-item>
+                </router-link>
+                <router-link to="/redirect/nested/menu1/menu1-2/menu1-2-2">
+                    <el-menu-item index='3'>菜单 1-2-2</el-menu-item>
+                </router-link>
+            </el-menu-item-group>
+            <el-menu-item-group>
+                <template slot="title">快捷菜单2</template>
+                    <el-menu-item 
+                        index='4' 
+                        @click="toPageByProgrammaticNavigation({
+                            path:'/redirect/permission/page',
+                            query:{ p: '1' }
+                        })"
+                    >
+                        页面权限
+                    </el-menu-item>
+                    <el-menu-item 
+                        index='5' 
+                        @click="toPageByProgrammaticNavigation({
+                            path:'/permission/page'
+                        })"
+                    >
+                        指令权限
+                    </el-menu-item>
+                    <el-menu-item 
+                        index='6' 
+                        @click="toPageByProgrammaticNavigation({
+                            name:'Menu1-2-2'
+                        })"
+                    >
+                        菜单 1-2-2
+                    </el-menu-item>
+            </el-menu-item-group>
         </template>
         <app-main>
             <router-view></router-view>
@@ -54,8 +110,14 @@ const BasicLayout = {
         sidebar:{
             opened:true,
             withoutAnimation: false
-        }
+        },
+        mode:"mixLayout"
       }
+    },
+    computed:{
+        showShortcutMenus(){
+            return this.mode === "mixLayout" && this.$route.path === "/dashboard"
+        }
     },
     methods:{
         handleCollapse(){
@@ -70,7 +132,10 @@ const BasicLayout = {
                 const dashbordMenu = $layout.menus.find(menu=> menu.path === $layout.dashboardPath)
                 dashbordMenu && $layout.setCurrentTopMenu(dashbordMenu)
             }
-        }
+        },
+        toPageByProgrammaticNavigation(e){
+            this.$router.push(e)
+        },
     },
     mounted() {
         window.$layout = this.$refs.layout;
@@ -201,6 +266,17 @@ function g(){
  */
 
 const asyncRoutes = [
+    {
+        path: "/redirect",
+        component: BasicLayout,
+        hidden: true,
+        children: [
+          {
+            path: "/redirect/:path(.*)",
+            component: Redirect,
+          },
+        ],
+    },
     {
         path: "/",
         component: BasicLayout,
