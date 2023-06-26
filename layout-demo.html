@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>demo</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+  <style>
+    body {
+        margin: 0;
+        height: 100%;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        font-family: PingFang SC, Microsoft YaHei, SimSun , Helvetica Neue, Helvetica,  Arial, sans-serif;
+        font-weight: 500;
+    }
+    #app {
+        height: 100%;
+    }
+
+  </style>
+  <script src='https://unpkg.com/vue@2.5.11'></script>
+  <script src="https://unpkg.com/vue-router@3.0.0/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script src="https://unpkg.com/element-ui@2.12.0/lib/index.js"></script>
+
+  <script src="dist/index.js"></script>
+  <script src="menus-data.js"></script>
+  <script src="router.js"></script>
+
+  <div id="app">
+    <!-- 路由出口 -->
+    <!-- 路由匹配到的组件将渲染在这里 -->
+    <router-view></router-view>
+  </div>
+  <script>
+    const app = new Vue({
+      router
+    }).$mount('#app')
+  </script>
+</body>
+
+</html>
